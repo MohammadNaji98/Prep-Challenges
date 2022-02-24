@@ -24,7 +24,24 @@
 //
 
 const LastWord = (str) => {
-    let arr = str.split(" ");
+    let arr = [];
+    let regex = /^[A-Za-z1-9,]*\s/;
+    let regexSave = /^[A-Za-z1-9,]*/;
+    while (str !== "") {
+        if (str.match(regex) !== null) {
+            let check = str.match(regex);
+            check = str.match(regexSave);
+            arr.push(check[0]);
+            str = str.replace(regex, "");
+            check = null;
+        } else {
+            let check = str.match(regexSave);
+            arr.push(check[0]);
+            str = str.replace(regexSave, "");
+            check = null;
+
+        }
+}
     let result = arr.slice(arr.length - 1);
     let res = result.indexOf(result[0], 0);
     return result[res];
